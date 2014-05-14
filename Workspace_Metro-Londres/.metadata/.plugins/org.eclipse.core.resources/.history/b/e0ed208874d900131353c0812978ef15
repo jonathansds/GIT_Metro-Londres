@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<body>
+		<form action="<c:url value='/estacoes/adiciona' />" method="Post" >
+	   <fieldset>
+	     <legend>Adicionar Estação</legend>
+	     
+	     <ul>
+			<c:forEach items="${errors}" var="error">
+			  <li>${error.category} - ${error.message}</li>
+			</c:forEach>
+		</ul>
+	     
+	     <label for="nome">Nome:</label>
+	     <input id="nome" type="text" name="estacao.nome" value="${estacao.nome}"/>
+	     
+	     <label for="descricao">Descrição:</label>
+	     <textarea id="descricao" name="estacao.descricao">${estacao.descricao}</textarea>
+	     
+	     <label for="preco">Latitude:</label>
+	     <input id="preco" type="text" name="estacao.latitude" value="${estacao.latitude}"/>
+	     
+	     <label for="preco">Longitude:</label>
+	     <input id="preco" type="text" name="estacao.longitude" value="${estacao.longitude}"/>
+	     
+	     <label for="preco">Zona:</label>
+	     <input id="preco" type="text" name="estacao.zona" value="${estacao.zona}"/>
+	     
+	     <label for="preco">Linhas:</label>
+	     <input id="preco" type="text" name="estacao.totalLinhas" value="${estacao.totalLinhas}"/>
+	     
+	     <label for="preco">Trilhos:</label>
+	     <input id="preco" type="text" name="estacao.trilhos" value="${estacao.trilhos}"/>
+	     
+	     <button type="submit">Enviar</button>
+	   </fieldset>
+	 </form>
+	</body>
+</html>

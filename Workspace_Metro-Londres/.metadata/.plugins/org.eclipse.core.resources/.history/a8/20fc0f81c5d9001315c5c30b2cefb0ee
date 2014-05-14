@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<body>
+		<form action="<c:url value='/importar' />" method="post" enctype="multipart/form-data">
+			<fieldset>
+				<label for="nome"><fmt:message key='label.nome.tabela' /></label>			
+				<input id="nome" type="text" name="nomeTabela" value="nomeTabela"/>
+			    <input id="arq" type="file" name="arq" size="50" />
+			    <button type="submit" ><fmt:message key='botao.salvar' /></button>
+			</fieldset>
+		</form>
+		<p>OBS.:</p><br />
+		<p style="color: red"> 
+			- As tabelas disponíveis em nosso sistema são: Estacoes, Rotas e Linhas; <br />
+			- O nome das colunas contidos no arquivo serão respeitados na base de dados; <br/>
+			- O arquivo deverá estar no formato CSV;
+			- A operação de persistencia dos dados será no padrão "atômica" onde, se houver uma linha incorreta no arquivo nenhum registro será persistido, por isso, atente-se ao arquivo enviado; <br/>
+			- Caso a operação seja realizada com sucesso você será redirecionado à página de listagem de dados.
+		</p>
+	</body>
+</html>

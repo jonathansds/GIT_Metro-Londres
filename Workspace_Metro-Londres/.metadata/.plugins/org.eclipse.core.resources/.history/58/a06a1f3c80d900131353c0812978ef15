@@ -1,0 +1,9 @@
+
+		</div><!-- div content -->
+	</div><!-- div body -->
+	<div id="footer">
+		<fmt:message key='texto.footer' />
+	</div>
+
+</body>
+</html>

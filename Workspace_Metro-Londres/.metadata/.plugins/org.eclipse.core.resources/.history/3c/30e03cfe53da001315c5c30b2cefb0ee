@@ -1,0 +1,28 @@
+package com.teste.londres.algoritmo;
+
+import java.util.List;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+public class Estacao {
+
+	private List<Caminho> caminhosPossiveis;
+
+	
+	/**
+	 * @return the caminhosPossiveis
+	 */
+	public List<Caminho> getCaminhosPossiveis() {
+		return caminhosPossiveis;
+	}
+
+	/**
+	 * @param caminhosPossiveis the caminhosPossiveis to set
+	 */
+	public void setCaminhosPossiveis(List<Caminho> caminhosPossiveis) {
+		this.caminhosPossiveis = caminhosPossiveis;
+	}
+}

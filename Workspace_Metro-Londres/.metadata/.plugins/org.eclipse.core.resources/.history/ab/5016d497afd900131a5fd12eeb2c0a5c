@@ -1,0 +1,25 @@
+
+
+############ APLICACÃO ###############
+
+header.title = Teste Java
+footer.texto = Teste Java Developer Copyright@
+
+
+
+
+############## MENU ##################
+
+menu.importar.arquivo = Importar Arquivo
+menu.listar.dados = Listar Dados
+
+
+
+
+
+######### PÁGINA ARQUIVO #############
+
+botao.salvar = Salvar
+label.nome.tabela = Tabela:
+nome.tabela.invalido = Não existe uma tabela com o nome indicado!
+ 

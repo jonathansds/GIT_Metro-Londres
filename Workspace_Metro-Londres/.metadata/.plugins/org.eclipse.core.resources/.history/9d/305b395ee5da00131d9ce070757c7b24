@@ -1,0 +1,67 @@
+package com.teste.londres.algoritmo;
+
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+@XmlRootElement
+public class Trajeto {
+	
+	/** estacaoOrigem */
+	private Station estacaoOrigem;
+	
+	/** estacaoDestino */
+	private Station estacaoDestino;
+	
+	/** menorCaminho */
+	private List<Station> menorCaminho;
+
+	/**
+	 * @return the estacaoOrigem
+	 */
+	public Station getEstacaoOrigem() {
+		return estacaoOrigem;
+	}
+
+	/**
+	 * @return the estacaoDestino
+	 */
+	public Station getEstacaoDestino() {
+		return estacaoDestino;
+	}
+
+	/**
+	 * @return the menorCaminho
+	 */
+	public List<Station> getMenorCaminho() {
+		return menorCaminho;
+	}
+
+	/**
+	 * @param estacaoOrigem the estacaoOrigem to set
+	 */
+	public void setEstacaoOrigem(Station estacaoOrigem) {
+		this.estacaoOrigem = estacaoOrigem;
+	}
+
+	/**
+	 * @param estacaoDestino the estacaoDestino to set
+	 */
+	public void setEstacaoDestino(Station estacaoDestino) {
+		this.estacaoDestino = estacaoDestino;
+	}
+
+	/**
+	 * @param menorCaminho the menorCaminho to set
+	 */
+	public void setMenorCaminho(List<Station> menorCaminho) {
+		this.menorCaminho = menorCaminho;
+	}
+
+	
+}

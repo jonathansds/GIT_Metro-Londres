@@ -1,0 +1,46 @@
+package com.teste.londres.utils;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public abstract class AbstractDao<T> {
+	
+	public void insert(T entidade){
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			session.save(entidade);
+			transaction.commit();
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+		}
+	}
+	
+	public T update(T entidade){
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			session.save(entidade);
+			transaction.commit();
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+		}
+	}
+	
+	public void delete(T entidade){
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			session.save(entidade);
+			transaction.commit();
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+		}
+	}
+}

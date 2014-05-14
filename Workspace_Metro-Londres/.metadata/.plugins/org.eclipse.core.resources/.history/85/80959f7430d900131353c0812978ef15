@@ -1,0 +1,9 @@
+package com.teste.londres.dao.impl;
+
+import com.teste.londres.dao.EstacaoDao;
+import com.teste.londres.entidades.Estacao;
+import com.teste.londres.utils.AbstractDaoImpl;
+
+public class EstacaoDaoImpl extends AbstractDaoImpl<Estacao> implements EstacaoDao{
+
+}

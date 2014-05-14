@@ -1,0 +1,45 @@
+package com.teste.londres.utils;
+
+import javax.annotation.PostConstruct;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import br.com.caelum.vraptor.ioc.Component;
+import br.com.caelum.vraptor.ioc.ComponentFactory;
+import br.com.caelum.vraptor.ioc.SessionScoped;
+
+/**
+ * @author Jonathan
+ * @version 10/05/2014
+ *
+ */
+/**
+ * @author Jonathan
+ * @version 11/05/2014
+ *
+ */
+@SessionScoped
+@Component
+public class SessionUtil implements ComponentFactory<Session>{
+
+	/** sessionFactory */
+	private final SessionFactory sessionFactory;
+	
+	/** session */
+	private Session session;
+	
+	public SessionUtil(SessionFactory sessionFactory){
+		this.sessionFactory = sessionFactory;
+	}
+	
+	@PostConstruct
+	public void constroi(){
+		session = sessionFactory.openSession();
+	}
+	
+	@Override
+	public Session getInstance() {
+		return sessionFactory.openSession();
+	}
+}

@@ -1,0 +1,79 @@
+package com.teste.londres.algoritmo;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+public class Caminho {
+	
+	private Integer minutosPercorrer;
+	
+	/** numeroLinha */
+	private Integer numeroLinha;
+
+	/** estacaoOrigem */
+	private Estacao estacaoOrigem;
+	
+	/** estacaoDestino */
+	private Estacao estacaoDestino;
+	
+	
+	
+	/**
+	 * @return the numeroLinha
+	 */
+	public Integer getNumeroLinha() {
+		return numeroLinha;
+	}
+
+	/**
+	 * @param numeroLinha the numeroLinha to set
+	 */
+	public void setNumeroLinha(Integer numeroLinha) {
+		this.numeroLinha = numeroLinha;
+	}
+
+	/**
+	 * @return the estacaoOrigem
+	 */
+	public Estacao getEstacaoOrigem() {
+		return estacaoOrigem;
+	}
+
+	/**
+	 * @return the estacaoDestino
+	 */
+	public Estacao getEstacaoDestino() {
+		return estacaoDestino;
+	}
+
+	/**
+	 * @param estacaoOrigem the estacaoOrigem to set
+	 */
+	public void setEstacaoOrigem(Estacao estacaoOrigem) {
+		this.estacaoOrigem = estacaoOrigem;
+	}
+
+	/**
+	 * @param estacaoDestino the estacaoDestino to set
+	 */
+	public void setEstacaoDestino(Estacao estacaoDestino) {
+		this.estacaoDestino = estacaoDestino;
+	}
+
+	/**
+	 * @return the minutosPercorrer
+	 */
+	public Integer getMinutosPercorrer() {
+		return minutosPercorrer;
+	}
+
+	/**
+	 * @param minutosPercorrer the minutosPercorrer to set
+	 */
+	public void setMinutosPercorrer(Integer minutosPercorrer) {
+		this.minutosPercorrer = minutosPercorrer;
+	}
+	
+}

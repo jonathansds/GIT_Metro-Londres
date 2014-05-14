@@ -1,0 +1,33 @@
+package com.teste.londres.entidades;
+
+/**
+ * @author Jonathan
+ * @version 10/05/2014
+ *
+ */
+public class Estacoes {
+	
+	/** id */
+	private Long id;
+	
+	/** latitude */
+	private Double latitude;
+	
+	/** longitude */
+	private Double longitude;
+	
+	/** nome */
+	private String nome;
+	
+	/** descricao */
+	private String descricao;
+	
+	/** zona */
+	private Integer zona;
+	
+	/** totalLinhas */
+	private Integer totalLinhas;
+	
+	/** trilho */
+	private Integer trilho;
+}

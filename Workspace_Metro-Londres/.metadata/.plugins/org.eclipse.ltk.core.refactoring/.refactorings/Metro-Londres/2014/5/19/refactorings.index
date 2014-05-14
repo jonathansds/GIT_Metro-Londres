@@ -1,0 +1,46 @@
+1399741038423	Rename resource 'hibernate.cfg.xlm'
+1399745021740	Rename type 'Estacoes'
+1399745355773	Delete element
+1399745682597	Delete element
+1399746290069	Delete element
+1399755554607	Rename compilation unit 'AbstractDao.java'
+1399769829142	Rename type 'Teste'
+1399770053071	Delete element
+1399771543071	Move 'guava-15.0.jar' to 'lib'
+1399771571083	Move 'spring-aop-4.0.3.RELEASE-javadoc.jar' to 'lib'
+1399771596591	Move 'antlr-2.7.7.jar' to 'lib'
+1399771601569	Delete elements
+1399772306671	Delete elements
+1399773098674	Move 'guava-15.0.jar' to 'lib'
+1399773101593	Delete element
+1399783551647	Delete elements
+1399783556973	Delete element
+1399783573373	Delete elements
+1399783950247	Rename resource 'persisteDadosController'
+1399784042430	Move compilation unit
+1399784354551	Move compilation unit
+1399826454079	Delete element
+1399826473909	Delete elements
+1399826491498	Delete elements
+1399826502078	Delete element
+1399826511200	Delete element
+1399827129019	Rename type 'PersisteDados'
+1399828353005	Rename resource 'persisteDados'
+1399829635114	Delete elements
+1399830462627	Copy files
+1399830490461	Copy files
+1399830503160	Delete elements
+1399830513373	Copy files
+1399830520171	Delete elements
+1399830535277	Copy files
+1399830544388	Delete elements
+1399830555317	Copy files
+1399830562501	Delete elements
+1399830604408	Copy files
+1399830609420	Delete elements
+1399830670974	Copy files
+1399830678467	Delete elements
+1399832513294	Delete elements
+1399833734630	Delete element
+1399834828218	Rename resource 'adionarEstacao.jsp'
+1399837170999	Rename type 'HibernateUtil'

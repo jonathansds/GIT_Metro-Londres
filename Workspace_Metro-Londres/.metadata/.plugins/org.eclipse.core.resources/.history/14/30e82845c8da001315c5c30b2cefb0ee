@@ -1,0 +1,27 @@
+package com.teste.londres.utils;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import com.teste.londres.algoritmo.Station;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+public class LondresUtil {
+	
+	public static List<Object> mapToArrayList(Map<Object, Object> mapa){
+		List<Object> listaResult = new ArrayList<Object>();
+		
+		Iterator<Entry<Object, Object>> it = mapa.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry<Object, Object> pairs = (Map.Entry<Object, Object>)it.next();
+	        
+	    }
+	}
+}

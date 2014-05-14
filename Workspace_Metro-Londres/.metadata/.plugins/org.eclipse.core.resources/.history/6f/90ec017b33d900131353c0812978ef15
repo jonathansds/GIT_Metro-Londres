@@ -1,0 +1,12 @@
+package com.teste.londres.dao.impl;
+
+import br.com.caelum.vraptor.ioc.Component;
+
+import com.teste.londres.dao.EstacaoDao;
+import com.teste.londres.entidades.Estacao;
+import com.teste.londres.utils.AbstractDaoImpl;
+
+@Component
+public class EstacaoDaoImpl extends AbstractDaoImpl<Estacao> implements EstacaoDao{
+
+}

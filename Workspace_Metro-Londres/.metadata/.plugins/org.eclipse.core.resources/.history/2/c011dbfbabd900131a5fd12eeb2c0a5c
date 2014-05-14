@@ -1,0 +1,102 @@
+package com.teste.londres.entidades;
+
+import java.io.Serializable;
+
+/**
+ * @author Jonathan
+ * @version 12/05/2014
+ *
+ */
+public class Rota implements Serializable {
+
+	/** serialVersionUID */
+	private static final long serialVersionUID = -7575456203330333226L;
+	
+	/** id */
+	private Long id;
+	
+	/** linha */
+	private Integer linha;
+	
+	/** nome */
+	private String nome;
+	
+	/** cor */
+	private String cor;
+	
+	/** divisa */
+	private String divisa;
+
+	
+	
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @return the linha
+	 */
+	public Integer getLinha() {
+		return linha;
+	}
+
+	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+
+	/**
+	 * @return the cor
+	 */
+	public String getCor() {
+		return cor;
+	}
+
+	/**
+	 * @return the divisa
+	 */
+	public String getDivisa() {
+		return divisa;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param linha the linha to set
+	 */
+	public void setLinha(Integer linha) {
+		this.linha = linha;
+	}
+
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	/**
+	 * @param cor the cor to set
+	 */
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	/**
+	 * @param divisa the divisa to set
+	 */
+	public void setDivisa(String divisa) {
+		this.divisa = divisa;
+	}
+
+}

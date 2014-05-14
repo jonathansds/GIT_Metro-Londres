@@ -1,0 +1,77 @@
+
+
+############ APLICACÃO ###############
+
+header.title = Teste Java
+footer.texto = Teste Java Developer Copyright@
+
+
+
+
+############## MENU ##################
+
+menu.importar.arquivo = Importar Arquivo
+menu.listar.dados = Listar Dados
+menu.definir.trajeto = Definir Trajeto
+
+
+
+
+
+######### PÁGINA ARQUIVO #############
+
+botao.salvar = Salvar
+label.nome.tabela = Tabela:
+nome.tabela.invalido = Não existe uma tabela com o nome indicado!
+arquivo.extensao.invalida = Arquivo inválido!
+
+
+
+
+######### PÁGINA ARQUIVOS #############
+
+tabela.estacoes.titulo = Estações
+tabela.rotas.titulo = Rotas
+tabela.linhas.titulo = Linhas
+
+estacoes.campo.nome = Nome
+estacoes.campo.descricao = Descrição
+estacoes.campo.latitude = Latitude
+estacoes.campo.longitude = Longitude
+estacoes.campo.zona = Zona
+estacoes.campo.linhas = Linhas
+estacoes.campo.trilhos = Trilhos
+
+rotas.campo.nome = Nome
+rotas.campo.linha = Linha
+rotas.campo.cor = Cor
+rotas.campo.fachada = Fachada
+
+linhas.campo.estacao1 = Estação 1
+linhas.campo.estacao2 = Estação 2
+linhas.campo.linha = Linha
+
+
+
+
+######### PÁGINA TRAJETO #############
+ 
+estacao.origem.nome = Estação de Origem:
+estacao.destino.nome = Estação de Destino:
+linha.origem.numero = Número da Linha Origem:
+linha.destino.numero = Número da Linha Destino:
+
+botao.definir = Definir
+
+
+
+
+######### PÁGINA EXIBIR MENOR TRAJETO #############
+
+tabela.coluna.estacao = Estação
+tabela.coluna.linha = Linha
+
+label.estacao.origem = Estação de Origem:
+label.estacao.destino = Estação de Destino:
+label.menor.trajeto = Menor Trajeto:
+label.tempo.gasto = Tempo(min):

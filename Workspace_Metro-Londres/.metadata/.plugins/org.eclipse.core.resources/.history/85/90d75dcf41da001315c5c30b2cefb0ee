@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:jsp="http://java.sun.com/JSP/Page">
+
+	<body>
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Nome</th>
+		      <th>Descrição</th>
+		      <th>Latitude</th>
+		      <th>Longitude</th>
+		      <th>Zona</th>
+		      <th>Linhas</th>
+		      <th>Trilhos</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <c:forEach items="${estacaoList}" var="estacao">
+		      <tr>
+		        <td>${estacao.nome }</td>
+		        <td>${estacao.descricao }</td>
+		        <td>${estacao.latitude }</td>
+		        <td>${estacao.longitude }</td>
+		        <td>${estacao.zona }</td>
+		        <td>${estacao.totalLinhas }</td>
+		        <td>${estacao.trilhos }</td>
+		      </tr>          
+		    </c:forEach>
+		  </tbody>
+		</table>
+	</body>
+</html>

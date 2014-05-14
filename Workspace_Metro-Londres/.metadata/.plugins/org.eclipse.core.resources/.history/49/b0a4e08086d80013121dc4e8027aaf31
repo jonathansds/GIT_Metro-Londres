@@ -1,0 +1,7 @@
+package com.teste.londres.dao;
+
+import com.teste.londres.utils.AbstractDao;
+
+public interface EstacaoDao extends AbstractDao{
+
+}

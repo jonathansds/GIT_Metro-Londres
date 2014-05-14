@@ -1,0 +1,43 @@
+
+
+############ APLICACÃO ###############
+
+header.title = Teste Java
+footer.texto = Teste Java Developer Copyright@
+
+
+
+
+############## MENU ##################
+
+menu.importar.arquivo = Importar Arquivo
+menu.listar.dados = Listar Dados
+
+
+
+
+
+######### PÁGINA ARQUIVO #############
+
+botao.salvar = Salvar
+label.nome.tabela = Tabela:
+nome.tabela.invalido = Não existe uma tabela com o nome indicado!
+arquivo.extensao.invalida = Arquivo inválido!
+
+
+
+
+######### PÁGINA ARQUIVOS #############
+
+tabela.estacoes.titulo = Estações
+tabela.rotas.titulo = Rotas
+tabela.linhas.titulo = Linhass
+
+estacoes.campo.nome = Nome
+estacoes.campo.descricao = Descrição
+estacoes.campo.latitude = Latitude
+estacoes.campo.longitude = Longitude
+estacoes.campo.zona = Zona
+estacoes.campo.linhas = Linhas
+estacoes.campo.trilhos = Trilhos
+ 

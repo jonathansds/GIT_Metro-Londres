@@ -1,0 +1,13 @@
+package com.teste.londres.algoritmo;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+public class Caminho {
+	
+	/** numeroLinha */
+	private Integer numeroLinha;
+	
+}

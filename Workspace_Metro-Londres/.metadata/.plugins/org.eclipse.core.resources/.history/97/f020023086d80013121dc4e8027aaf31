@@ -1,0 +1,10 @@
+package com.teste.londres.utils;
+
+public interface AbstractDao<T> {
+	
+	public boolean insert(T entidade);
+	
+	public T update(T entidade);
+	
+	public boolean delete(T entidade);
+}

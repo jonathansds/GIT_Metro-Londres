@@ -1,0 +1,8 @@
+package com.teste.londres.algoritmo;
+
+public class Rota {
+	
+	private Estacao estacaoOrigem;
+	
+	private Estacao estacaoDestino;
+}

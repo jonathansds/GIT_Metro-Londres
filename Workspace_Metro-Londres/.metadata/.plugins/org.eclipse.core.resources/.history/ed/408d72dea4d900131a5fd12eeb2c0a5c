@@ -1,0 +1,31 @@
+package com.teste.londres.models;
+
+import java.io.Serializable;
+
+/**
+ * @author Jonathan
+ * @version 12/05/2014
+ *
+ */
+public class Formulario implements Serializable {
+	
+	/** serialVersionUID */
+	private static final long serialVersionUID = -7539943212544023814L;
+
+	/** nomeArquivo */
+	private String nomeArquivo;
+	
+	/**
+	 * @return the nomeArquivo
+	 */
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	/**
+	 * @param nomeArquivo the nomeArquivo to set
+	 */
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
+	}
+}

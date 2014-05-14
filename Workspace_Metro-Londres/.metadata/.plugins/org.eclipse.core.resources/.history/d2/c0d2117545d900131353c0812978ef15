@@ -1,0 +1,81 @@
+package com.teste.londres.utils;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import br.com.caelum.vraptor.ioc.Component;
+
+/**
+ * @author Jonathan
+ * @version 11/05/2014
+ *
+ * @param <T>
+ */
+@Component
+public class AbstractDaoImpl<T> implements AbstractDao<T>{
+	
+	protected Session session1;
+	
+	public AbstractDaoImpl(Session session){
+		this.session1 = session;
+	}
+	
+	/**
+	 * insert
+	 * @param entidade
+	 * @return se inserido
+	 */
+	public boolean insert(T entidade){
+		Transaction transaction = session1.beginTransaction();
+		
+		try{
+			session1.save(entidade);
+			session1.flush();
+			transaction.commit();
+			return true;
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+			return false;
+		}
+	}
+	
+	/**
+	 * update
+	 * @param entidade
+	 * @return se atualizado
+	 */
+	@SuppressWarnings("unchecked")
+	public T update(T entidade){
+		Transaction transaction = session1.beginTransaction();
+		
+		try{
+			T ent = (T)session1.merge(entidade);
+			transaction.commit();
+			return ent;
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * delete
+	 * @param entidade
+	 * @return se deletado
+	 */
+	public boolean delete(T entidade){
+		Transaction transaction = session1.beginTransaction();
+		
+		try{
+			session1.delete(entidade);
+			transaction.commit();
+			return true;
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+			return false;
+		}
+	}
+}

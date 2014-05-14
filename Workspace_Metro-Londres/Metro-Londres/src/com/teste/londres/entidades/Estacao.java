@@ -1,0 +1,182 @@
+package com.teste.londres.entidades;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+/**
+ * @author Jonathan
+ * @version 10/05/2014
+ *
+ */	
+@Entity(name="estacoes")
+public class Estacao implements Serializable{
+	
+	/** serialVersionUID */
+	private static final long serialVersionUID = -3022177635156783488L;
+
+	/** id */
+	private Long id;
+	
+	/** latitude */
+	private Double latitude;
+	
+	/** longitude */
+	private Double longitude;
+	
+	/** nome */
+	private String name;
+	
+	/** descricao */
+	private String display_name;
+	
+	/** zona */
+	private Double zone;
+	
+	/** totalLinhas */
+	private Integer total_lines;
+	
+	/** trilho */
+	private Integer rail;
+
+	
+	
+	/**
+	 * @return the id
+	 */
+	@Id
+	@Column(name="id")
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @return the latitude
+	 */
+	@Column(name="latitude", columnDefinition="DECIMAL(7,4)")
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	/**
+	 * @return the longitude
+	 */
+	@Column(name="longitude", columnDefinition="DECIMAL(5,4)")
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	/**
+	 * @return the nome
+	 */
+	@Column(name="nome")
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @return the descricao
+	 */
+	@Column(name="descricao")
+	public String getDisplay_name() {
+		return display_name;
+	}
+
+	/**
+	 * @return the zona
+	 */
+	@Column(name="zona", columnDefinition="DECIMAL(3,1)")
+	public Double getZone() {
+		return zone;
+	}
+
+	/**
+	 * @return the totalLinhas
+	 */
+	@Column(name="total_linhas")
+	public Integer getTotal_lines() {
+		return total_lines;
+	}
+
+	/**
+	 * @return the trilho
+	 */
+	@Column(name="trilhos")
+	public Integer getRail() {
+		return rail;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param latitude the latitude to set
+	 */
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * @param longitude the longitude to set
+	 */
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @param descricao the descricao to set
+	 */
+	public void setDisplay_name(String display_name) {
+		this.display_name = display_name;
+	}
+
+	/**
+	 * @param zona the zona to set
+	 */
+	public void setZone(Double zone) {
+		this.zone = zone;
+	}
+
+	/**
+	 * @param totalLinhas the totalLinhas to set
+	 */
+	public void setTotal_lines(Integer total_lines) {
+		this.total_lines = total_lines;
+	}
+
+	/**
+	 * @param trilho the trilho to set
+	 */
+	public void setRail(Integer rail) {
+		this.rail = rail;
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj != null && obj instanceof Estacao){
+			if(((Estacao)obj).getId().equals(this.id)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
+}

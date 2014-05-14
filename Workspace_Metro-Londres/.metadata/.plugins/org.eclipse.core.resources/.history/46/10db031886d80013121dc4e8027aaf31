@@ -1,0 +1,5 @@
+package com.teste.londres.utils;
+
+public interface AbstractDao<T> {
+
+}

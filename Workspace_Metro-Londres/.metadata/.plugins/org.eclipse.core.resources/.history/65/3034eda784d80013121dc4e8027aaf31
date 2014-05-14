@@ -1,0 +1,13 @@
+package com.teste.londres.utils;
+
+import org.hibernate.Session;
+
+public abstract class AbstractDao<T> {
+	
+	private T entidade;
+	
+	
+	public void incluir(T entidade){
+		Session session = HibernateUtil.getSession();
+	}
+}

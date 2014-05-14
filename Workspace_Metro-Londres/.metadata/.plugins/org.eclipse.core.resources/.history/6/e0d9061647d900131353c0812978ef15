@@ -1,0 +1,31 @@
+package com.teste.londres.utils;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
+import br.com.caelum.vraptor.ioc.ApplicationScoped;
+import br.com.caelum.vraptor.ioc.Component;
+import br.com.caelum.vraptor.ioc.ComponentFactory;
+
+@SuppressWarnings("deprecation")
+@ApplicationScoped
+@Component
+public class SessionFactoryUtil implements ComponentFactory<SessionFactory>{
+
+	private final SessionFactory sessionFactory;
+	
+	public SessionFactoryUtil(){
+		Configuration configuration = new Configuration();
+		configuration.configure();
+		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	}
+	
+	@Override
+	public SessionFactory getInstance() {
+		return sessionFactory;
+	}
+
+}

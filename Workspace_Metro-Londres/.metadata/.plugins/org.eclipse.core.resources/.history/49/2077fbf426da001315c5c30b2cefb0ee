@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+		<table title="<fmt:message key='tabela.estacoes.titulo' />">
+		  <thead>
+		    <tr>
+		      <th><fmt:message key='estacoes.campo.nome' /></th>
+		      <th><fmt:message key='estacoes.campo.descricao' /></th>
+		      <th><fmt:message key='estacoes.campo.latitude' /></th>
+		      <th><fmt:message key='estacoes.campo.longitude' /></th>
+		      <th><fmt:message key='estacoes.campo.zona' /></th>
+		      <th><fmt:message key='estacoes.campo.linhas' /></th>
+		      <th><fmt:message key='estacoes.campo.trilhos' /></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <c:forEach items="${estacaoList}" var="estacao">
+		      <tr>
+		        <td>${estacao.nome }</td>
+		        <td>${estacao.descricao }</td>
+		        <td>${estacao.latitude }</td>
+		        <td>${estacao.longitude }</td>
+		        <td>${estacao.zona }</td>
+		        <td>${estacao.totalLinhas }</td>
+		        <td>${estacao.trilhos }</td>
+		      </tr>          
+		    </c:forEach>
+		  </tbody>
+		</table>
+		
+		
+		<table title="<fmt:message key='tabela.rotas.titulo' />">
+		  <thead>
+		    <tr>
+		      <th><fmt:message key='tabela.estacoes.titulo' />Nome</th>
+		      <th><fmt:message key='tabela.estacoes.titulo' />Descrição</th>
+		      <th><fmt:message key='tabela.estacoes.titulo' />Latitude</th>
+		      <th><fmt:message key='tabela.estacoes.titulo' />Longitude</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <c:forEach items="${estacaoList}" var="estacao">
+		      <tr>
+		        <td>${estacao.nome }</td>
+		        <td>${estacao.descricao }</td>
+		        <td>${estacao.latitude }</td>
+		        <td>${estacao.longitude }</td>
+		      </tr>          
+		    </c:forEach>
+		  </tbody>
+		</table>
+		
+		
+		<table title="<fmt:message key='tabela.linhas.titulo' />">
+		  <thead>
+		    <tr>
+		      <th><fmt:message key='tabela.estacoes.titulo' />Nome</th>
+		      <th><fmt:message key='tabela.estacoes.titulo' />Descrição</th>
+		      <th><fmt:message key='tabela.estacoes.titulo' />Latitude</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <c:forEach items="${estacaoList}" var="estacao">
+		      <tr>
+		        <td>${estacao.nome }</td>
+		        <td>${estacao.descricao }</td>
+		        <td>${estacao.latitude }</td>
+		      </tr>          
+		    </c:forEach>
+		  </tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+package com.teste.londres.algoritmo;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+public class Caminho {
+	
+	/** numeroLinha */
+	private Integer numeroLinha;
+
+	private Estacao estacaoOrigem;
+	
+	private Estacao estacaoDestino;
+	
+	
+	
+	/**
+	 * @return the numeroLinha
+	 */
+	public Integer getNumeroLinha() {
+		return numeroLinha;
+	}
+
+	/**
+	 * @param numeroLinha the numeroLinha to set
+	 */
+	public void setNumeroLinha(Integer numeroLinha) {
+		this.numeroLinha = numeroLinha;
+	}
+
+	/**
+	 * @return the estacaoOrigem
+	 */
+	public Estacao getEstacaoOrigem() {
+		return estacaoOrigem;
+	}
+
+	/**
+	 * @return the estacaoDestino
+	 */
+	public Estacao getEstacaoDestino() {
+		return estacaoDestino;
+	}
+
+	/**
+	 * @param estacaoOrigem the estacaoOrigem to set
+	 */
+	public void setEstacaoOrigem(Estacao estacaoOrigem) {
+		this.estacaoOrigem = estacaoOrigem;
+	}
+
+	/**
+	 * @param estacaoDestino the estacaoDestino to set
+	 */
+	public void setEstacaoDestino(Estacao estacaoDestino) {
+		this.estacaoDestino = estacaoDestino;
+	}
+	
+}

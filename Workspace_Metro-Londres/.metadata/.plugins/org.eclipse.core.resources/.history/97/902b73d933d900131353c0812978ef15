@@ -1,0 +1,90 @@
+package com.teste.londres.utils;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class AbstractDaoImpl<T> implements AbstractDao<T>{
+	
+	/** tipo */
+	private T tipo;
+	
+	/**
+	 * insert
+	 * @param entidade
+	 * @return se inserido
+	 */
+	public boolean insert(T entidade){
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			session.save(entidade);
+			transaction.commit();
+			return true;
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+			return false;
+		}
+	}
+	
+	/**
+	 * update
+	 * @param entidade
+	 * @return se atualizado
+	 */
+	@SuppressWarnings("unchecked")
+	public T update(T entidade){
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			T ent = (T)session.merge(entidade);
+			transaction.commit();
+			return ent;
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * delete
+	 * @param entidade
+	 * @return se deletado
+	 */
+	public boolean delete(T entidade){
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			session.delete(entidade);
+			transaction.commit();
+			return true;
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+			return false;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> listAll() {
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			List<T> result = session.createCriteria(tipo.getClass()).list();
+			transaction.commit();
+			return result;
+		}catch(Exception erro){
+			transaction.rollback();
+			System.err.print(erro.getMessage());
+			return null;
+		}
+	}
+}

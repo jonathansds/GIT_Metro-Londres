@@ -1,0 +1,22 @@
+package com.teste.londres.algoritmo;
+
+public class Station {
+	
+	/** tempoDistancia */
+	private Integer tempoDistancia;
+
+	
+	/**
+	 * @return the tempoDistancia
+	 */
+	public Integer getTempoDistancia() {
+		return tempoDistancia;
+	}
+
+	/**
+	 * @param tempoDistancia the tempoDistancia to set
+	 */
+	public void setTempoDistancia(Integer tempoDistancia) {
+		this.tempoDistancia = tempoDistancia;
+	}
+}

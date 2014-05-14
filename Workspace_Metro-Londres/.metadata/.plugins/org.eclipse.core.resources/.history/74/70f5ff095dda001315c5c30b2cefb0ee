@@ -1,0 +1,59 @@
+package com.teste.londres.algoritmo;
+
+import java.util.List;
+
+public class Rota {
+	
+	/** estacaoOrigem */
+	private Estacao estacaoOrigem;
+	
+	/** estacaoDestino */
+	private Estacao estacaoDestino;
+	
+	/** menorCaminho */
+	private List<Estacao> menorCaminho;
+
+	
+	
+	/**
+	 * @return the estacaoOrigem
+	 */
+	public Estacao getEstacaoOrigem() {
+		return estacaoOrigem;
+	}
+
+	/**
+	 * @return the estacaoDestino
+	 */
+	public Estacao getEstacaoDestino() {
+		return estacaoDestino;
+	}
+
+	/**
+	 * @return the menorCaminho
+	 */
+	public List<Estacao> getMenorCaminho() {
+		return menorCaminho;
+	}
+
+	/**
+	 * @param estacaoOrigem the estacaoOrigem to set
+	 */
+	public void setEstacaoOrigem(Estacao estacaoOrigem) {
+		this.estacaoOrigem = estacaoOrigem;
+	}
+
+	/**
+	 * @param estacaoDestino the estacaoDestino to set
+	 */
+	public void setEstacaoDestino(Estacao estacaoDestino) {
+		this.estacaoDestino = estacaoDestino;
+	}
+
+	/**
+	 * @param menorCaminho the menorCaminho to set
+	 */
+	public void setMenorCaminho(List<Estacao> menorCaminho) {
+		this.menorCaminho = menorCaminho;
+	}
+}

@@ -1,0 +1,45 @@
+package com.teste.londres.models;
+
+/**
+ * @author Jonathan
+ * @version 12/05/2014
+ *
+ */
+public class UploadArquivo {
+	
+	/** arquivo */
+	private byte[] arquivo;
+	
+	/	** nomeArquivo */
+	private String nomeArquivo;
+
+	
+	
+	/**
+	 * @return the arquivo
+	 */
+	public byte[] getArquivo() {
+		return arquivo;
+	}
+
+	/**
+	 * @return the nomeArquivo
+	 */
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	/**
+	 * @param arquivo the arquivo to set
+	 */
+	public void setArquivo(byte[] arquivo) {
+		this.arquivo = arquivo;
+	}
+
+	/**
+	 * @param nomeArquivo the nomeArquivo to set
+	 */
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
+	}
+}

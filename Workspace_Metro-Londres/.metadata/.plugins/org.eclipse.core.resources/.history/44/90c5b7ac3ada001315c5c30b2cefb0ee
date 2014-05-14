@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+
+	<table>
+		  <thead>
+		    <tr>
+		    	<th><fmt:message key='tabela.estacoes.titulo' /></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<tr>
+		        <td>
+	        	<table>
+				  <thead>
+				    <tr>
+				      <th><fmt:message key='estacoes.campo.nome' /></th>
+				      <th><fmt:message key='estacoes.campo.descricao' /></th>
+				      <th><fmt:message key='estacoes.campo.latitude' /></th>
+				      <th><fmt:message key='estacoes.campo.longitude' /></th>
+				      <th><fmt:message key='estacoes.campo.zona' /></th>
+				      <th><fmt:message key='estacoes.campo.linhas' /></th>
+				      <th><fmt:message key='estacoes.campo.trilhos' /></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <c:forEach items="${registrosModel.estacoes}" var="estacao">
+				      <tr>
+				        <td>${estacao.name}</td>
+				        <td>${estacao.display_name}</td>
+				        <td>${estacao.latitude}</td>
+				        <td>${estacao.longitude}</td>
+				        <td>${estacao.zone}</td>
+				        <td>${estacao.total_lines}</td>
+				        <td>${estacao.rail}</td>
+				      </tr>          
+				    </c:forEach>
+				  </tbody>
+				</table>
+		        </td>
+		    </tr>
+		  </tbody>
+	</table>
+	
+	
+	
+	<table>
+		  <thead>
+		    <tr>
+		    	<th><fmt:message key='tabela.rotas.titulo' /></th>
+		    	<th><fmt:message key='tabela.linhas.titulo' /></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<tr>
+		        <td>
+		        <table>
+				  <thead>
+				    <tr>
+				      <th><fmt:message key='rotas.campo.nome' /></th>
+				      <th><fmt:message key='rotas.campo.linha' /></th>
+				      <th><fmt:message key='rotas.campo.cor' /></th>
+				      <th><fmt:message key='rotas.campo.fachada' /></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <c:forEach items="${registrosModel.rotas}" var="rota">
+				      <tr>
+				        <td>${rota.name}</td>
+				        <td>${rota.line}</td>
+				        <td>${rota.colour}</td>
+				        <td>${rota.stripe}</td>
+				      </tr>          
+				    </c:forEach>
+				  </tbody>
+				</table>
+		        </td>
+		        <td>
+				<table>
+				  <thead>
+				    <tr>
+				      <th><fmt:message key='linhas.campo.estacao1' /></th>
+				      <th><fmt:message key='linhas.campo.estacao2' /></th>
+				      <th><fmt:message key='linhas.campo.linha' /></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <c:forEach items="${registrosModel.linhas}" var="linha">
+				      <tr>
+				        <td>${linha.line}</td>
+				        <td>${linha.station1}</td>
+				        <td>${linha.station2}</td>
+				      </tr>          
+				    </c:forEach>
+				  </tbody>
+				</table>
+		        </td>
+		    </tr>
+		  </tbody>
+		  </table>
+	</body>
+</html>

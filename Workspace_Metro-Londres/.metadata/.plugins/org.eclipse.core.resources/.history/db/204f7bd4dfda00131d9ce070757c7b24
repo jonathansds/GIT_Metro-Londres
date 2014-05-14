@@ -1,0 +1,178 @@
+package com.teste.londres.controllers;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
+
+import com.teste.londres.algoritmo.Metro;
+import com.teste.londres.algoritmo.Station;
+import com.teste.londres.algoritmo.Trajeto;
+import com.teste.londres.dao.EstacaoDao;
+import com.teste.londres.dao.LinhaDao;
+import com.teste.londres.dao.RotaDao;
+import com.teste.londres.dao.impl.EstacaoDaoImpl;
+import com.teste.londres.dao.impl.LinhaDaoImpl;
+import com.teste.londres.dao.impl.RotaDaoImpl;
+import com.teste.londres.entidades.Rota;
+import com.teste.londres.models.RegistrosModel;
+import com.teste.londres.utils.Constantes;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+@Resource
+public class TrajetoController {
+	/** estacaoDao */
+	private final EstacaoDao estacaoDao;
+	
+	/** linhaDao */
+	private final LinhaDao linhaDao;
+	
+	/** rotaDao */
+	private final RotaDao rotaDao;
+	
+	/** result */
+	private final Result result;
+	
+	/** metroLondres */
+	private Metro metroLondres;
+	
+	
+	
+	
+	/** menorCaminho */
+	private List<Station> menorCaminho;
+	
+	/** naoVisitadas */
+	private List<Station> naoVisitadas;
+	
+	/** estacaoAtual */
+	private Station estacaoAtual;
+	
+	/** estacaoVizinha */
+	private Station estacaoVizinha;
+	
+	/** caminho */
+	private Station caminho;
+	
+	
+	
+	
+	
+	public TrajetoController(EstacaoDaoImpl estacaoDao, LinhaDaoImpl linhaDao, RotaDaoImpl rotaDao, Result result){
+		this.estacaoDao = estacaoDao;
+		this.linhaDao = linhaDao;
+		this.rotaDao = rotaDao;
+		this.result = result;
+		
+		metroLondres = new Metro();
+		metroLondres.setEstacoes(estacaoDao.listAll());
+		metroLondres.setLinhas(linhaDao.listAll());
+		metroLondres.setLinhasDefinicao(rotaDao.listAll());
+		metroLondres.setRotasDefinidas(new ArrayList<Trajeto>());
+		
+		metroLondres.define();
+	}
+	
+	@Get
+	@Path("/trajeto/trajeto")
+	public RegistrosModel trajeto(){
+		RegistrosModel model = new RegistrosModel();
+		List<Integer> listaLinhas = new ArrayList<Integer>();
+		Integer numeroLinha;
+		
+		for(Rota rota : metroLondres.getLinhasDefinicao()){
+			numeroLinha = new Integer(rota.getLine());
+			listaLinhas.add(numeroLinha);
+		}
+		
+		model.setNumeroLinhas(listaLinhas);
+		model.setStations(new ArrayList<Station>(metroLondres.getStations().values()));
+		
+		return model;
+	}
+	
+	@Post
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@Path("/trajeto/definir")
+	public void definir(final Long estacaoOrigem, final Long estacaoDestino, final Integer linhaOrigem, final Integer linhaDestino){
+		Station origStation = metroLondres.getStations().get(estacaoOrigem);
+		Station destStation = metroLondres.getStations().get(estacaoDestino);
+		List<Trajeto> trajetosDefinidos = metroLondres.getRotasDefinidas();
+		
+		if(trajetosDefinidos != null){
+			for(Trajeto trajeto : trajetosDefinidos){
+				if(trajeto.getEstacaoOrigem().getIdentificador().equals(origStation.getIdentificador()) &&
+						trajeto.getEstacaoDestino().getIdentificador().equals(destStation.getIdentificador())){
+					return trajeto;
+				}
+			}
+		}
+		
+		menorCaminho = new ArrayList<Station>();
+		
+		metroLondres.getStations().get(origStation.getIdentificador()).setTempoDistancia(0);
+		naoVisitadas = new ArrayList<Station>(metroLondres.getStations().values());
+		menorCaminho.add(origStation);
+
+		Collections.sort(naoVisitadas);
+		
+		while(!naoVisitadas.isEmpty()){
+			estacaoAtual = naoVisitadas.get(0);
+			
+			for(int x = 0;x < estacaoAtual.getEstacoesVizinhas().size(); x++){
+				estacaoVizinha = estacaoAtual.getEstacoesVizinhas().get(x);
+				
+				if(!estacaoVizinha.getVisitada()){
+					
+					if(estacaoVizinha.getTempoDistancia() > (estacaoAtual.getTempoDistancia() + Constantes.TEMP_MIN_POR_ESTACAO)){
+						estacaoVizinha.setTempoDistancia(estacaoAtual.getTempoDistancia() + Constantes.TEMP_MIN_POR_ESTACAO);
+						estacaoVizinha.setEstacaoAnterior(estacaoAtual);
+						
+						if(estacaoVizinha.getIdentificador().equals(destStation.getIdentificador())){
+							menorCaminho.clear();
+							caminho = estacaoVizinha;
+							menorCaminho.add(estacaoVizinha);
+							
+							while(caminho.getEstacaoAnterior() != null){
+								menorCaminho.add(caminho.getEstacaoAnterior());
+								caminho = caminho.getEstacaoAnterior();
+							}
+							
+							Collections.sort(menorCaminho);
+						}
+					}
+				}
+			}
+			
+			estacaoAtual.setVisitada(true);
+			naoVisitadas.remove(estacaoAtual);
+			
+			Collections.sort(naoVisitadas);
+		}
+		
+		Trajeto trajeto = new Trajeto();
+		trajeto.setEstacaoDestino(origStation);
+		trajeto.setEstacaoDestino(destStation);
+		trajeto.setMenorCaminho(menorCaminho);
+		metroLondres.getRotasDefinidas().add(trajeto);
+		
+		metroLondres.inicializaDistancias();
+		
+		result.use(Results.xml()).from(menorCaminho).serialize();
+	}
+}

@@ -1,0 +1,22 @@
+package com.teste.londres.utils;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public abstract class AbstractDao<T> {
+	
+	private T entidade;
+	
+	
+	public void incluir(T entidade){
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try{
+			session.save(entidade);
+			transaction.commit();
+		}catch(Exception erro){
+			transaction.rollback();
+		}
+	}
+}

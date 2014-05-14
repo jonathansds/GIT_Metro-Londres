@@ -1,0 +1,28 @@
+package com.teste.londres.utils;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import br.com.caelum.vraptor.ioc.Component;
+import br.com.caelum.vraptor.ioc.ComponentFactory;
+
+/**
+ * @author Jonathan
+ * @version 10/05/2014
+ *
+ */
+@SuppressWarnings("deprecation")
+@Component
+public class SessionUtil implements ComponentFactory<Session>{
+
+	private final SessionFactory sessionFactory;
+	
+	public SessionUtil(SessionFactory sessionFactory){
+		this.sessionFactory = sessionFactory;
+	}
+	
+	@Override
+	public Session getInstance() {
+		return sessionFactory.openSession();
+	}
+}

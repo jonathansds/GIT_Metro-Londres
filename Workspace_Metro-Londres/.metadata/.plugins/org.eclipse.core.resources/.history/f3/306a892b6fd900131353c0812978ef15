@@ -1,0 +1,57 @@
+package com.teste.londres.utils;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
+import br.com.caelum.vraptor.ioc.Component;
+import br.com.caelum.vraptor.ioc.ComponentFactory;
+
+/**
+ * @author Jonathan
+ * @version 10/05/2014
+ *
+ */
+/**
+ * @author Jonathan
+ * @version 11/05/2014
+ *
+ */
+public class SessionUtil implements ComponentFactory<Session>{
+
+	/** sessionFactory */
+	private SessionFactory sessionFactory;
+	
+	/** session */
+	private Session session;
+	
+	public SessionUtil(SessionFactory sessionFactory){
+		this.sessionFactory = sessionFactory;
+	}
+	
+	@SuppressWarnings("deprecation")
+	@PostConstruct
+	public void constroi(){
+		Configuration configuration = new Configuration();
+		configuration.configure();
+		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+		
+		session = sessionFactory.openSession();
+	}
+	
+	@PreDestroy
+	public void destroi(){
+		session.close();
+	}
+	
+	@Override
+	public Session getInstance() {
+		return this.session;
+	}
+}

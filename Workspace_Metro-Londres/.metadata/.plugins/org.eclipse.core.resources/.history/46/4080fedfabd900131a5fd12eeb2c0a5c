@@ -1,0 +1,17 @@
+package com.teste.londres.entidades;
+
+import java.io.Serializable;
+
+/**
+ * @author Jonathan
+ * @version 12/05/2014
+ *
+ */
+public class Rota implements Serializable {
+
+	/** serialVersionUID */
+	private static final long serialVersionUID = -7575456203330333226L;
+	
+	
+
+}

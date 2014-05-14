@@ -1,0 +1,17 @@
+package com.teste.londres.utils;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import org.hibernate.jpamodelgen.xml.jaxb.Persistence;
+
+public class EntityManagerUtil {
+	
+	/** entity */
+	private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persist-two");
+
+	/** @return the entity */
+	public static EntityManager getEntity() {
+		return entityManagerFactory.createEntityManager();
+	}
+}

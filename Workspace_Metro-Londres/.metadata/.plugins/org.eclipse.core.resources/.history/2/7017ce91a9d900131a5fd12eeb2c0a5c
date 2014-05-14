@@ -1,0 +1,10 @@
+package com.teste.londres.utils;
+
+public class Constantes {
+
+	public static final String TABELA_ESTACOES = "estacoes";
+	
+	public static final String TABELA_ROTAS = "rotas";
+	
+	public static final String TABELA_LINHAS = "linhas";
+}

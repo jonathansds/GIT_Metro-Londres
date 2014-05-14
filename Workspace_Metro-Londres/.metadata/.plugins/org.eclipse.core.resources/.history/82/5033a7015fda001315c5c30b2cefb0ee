@@ -1,0 +1,78 @@
+package com.teste.londres.algoritmo;
+
+import java.util.List;
+
+import br.com.caelum.vraptor.ioc.ApplicationScoped;
+import br.com.caelum.vraptor.ioc.Component;
+
+import com.teste.londres.entidades.Estacao;
+import com.teste.londres.entidades.Linha;
+
+/**
+ * @author Jonathan
+ * @version 13/05/2014
+ *
+ */
+@ApplicationScoped
+@Component
+public class Metro {
+	
+	/** estacoes */
+	private List<Estacao> estacoes;
+	
+	/** rotasDefinidas */
+	private List<Trajeto> rotasDefinidas;
+
+	/** linhas */
+	private List<Linha> linhas;
+	
+	
+	/**
+	 * define
+	 */
+	public void define(){
+		
+	}
+	
+	/**
+	 * @return the estacoes
+	 */
+	public List<Estacao> getEstacoes() {
+		return estacoes;
+	}
+
+	/**
+	 * @return the rotasDefinidas
+	 */
+	public List<Trajeto> getRotasDefinidas() {
+		return rotasDefinidas;
+	}
+
+	/**
+	 * @param estacoes the estacoes to set
+	 */
+	public void setEstacoes(List<Estacao> estacoes) {
+		this.estacoes = estacoes;
+	}
+
+	/**
+	 * @param rotasDefinidas the rotasDefinidas to set
+	 */
+	public void setRotasDefinidas(List<Trajeto> rotasDefinidas) {
+		this.rotasDefinidas = rotasDefinidas;
+	}
+
+	/**
+	 * @return the linhas
+	 */
+	public List<Linha> getLinhas() {
+		return linhas;
+	}
+
+	/**
+	 * @param linhas the linhas to set
+	 */
+	public void setLinhas(List<Linha> linhas) {
+		this.linhas = linhas;
+	}
+}

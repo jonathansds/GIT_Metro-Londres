@@ -1,0 +1,6 @@
+package com.teste.londres.utils;
+
+public abstract class AbstractDao<T> {
+	
+	
+}

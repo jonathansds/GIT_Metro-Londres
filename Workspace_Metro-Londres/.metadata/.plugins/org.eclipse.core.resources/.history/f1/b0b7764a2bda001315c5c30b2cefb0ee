@@ -1,0 +1,15 @@
+package com.teste.londres.models;
+
+import java.util.List;
+
+import com.teste.londres.entidades.Estacao;
+
+/**
+ * @author Jonathan
+ * @version 12/05/2014
+ *
+ */
+public class TabelasModel {
+	
+	private List<Estacao> estacoes;
+}

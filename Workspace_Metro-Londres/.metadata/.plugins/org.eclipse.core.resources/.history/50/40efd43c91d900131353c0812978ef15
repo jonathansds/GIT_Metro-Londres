@@ -1,0 +1,120 @@
+package com.teste.londres.controllers;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import javax.ws.rs.core.Response;
+
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+
+import br.com.caelum.vraptor.Consumes;
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+
+import com.teste.londres.dao.EstacaoDao;
+import com.teste.londres.dao.impl.EstacaoDaoImpl;
+import com.teste.londres.models.UploadArquivo;
+
+/**
+ * @author Jonathan
+ * @version 11/05/2014
+ *
+ */
+@Resource
+public class DadosController{
+	
+	/** estacaoDao */
+	private final EstacaoDao estacaoDao;
+	
+	/** result */
+	private final Result result;
+	
+	/** validator */
+	private final Validator validator;
+	
+	public DadosController(EstacaoDaoImpl estacaoDao, Result result, Validator validator){
+		this.estacaoDao = estacaoDao;
+		this.result = result;
+		this.validator = validator;
+	}
+	
+	@Get
+	@Path("/dados/arquivo")
+	public void arquivo(){
+		System.out.println("CHAMOU!");
+	}
+	
+	@Post
+	@Consumes("multipart/form-data")
+	@Path("/dados/importar")
+	public void importar(@MultipartForm UploadArquivo formulario){
+		String fileName = formulario.getNomeArquivo() == null ? "Unknown" : formulario.getNomeArquivo();
+		
+		String completeFilePath = "c:/temp/" + fileName;
+		try 
+		{
+			File file = new File(completeFilePath);
+			 
+			if (!file.exists()) 
+			{
+				file.createNewFile();
+			}
+	 
+			FileOutputStream fos = new FileOutputStream(file);
+	 
+			fos.write(formulario.getArquivo());
+			fos.flush();
+			fos.close();
+		} 
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+//	@Path("/estacoes")
+//	@Get
+//	public List<Estacao> estacoes(){
+//		return estacaoDao.listAll();
+//	}
+//	
+//	@Path("/estacoes/adiciona")
+//	@Post
+//	public void adiciona(final Estacao estacao){
+//		validator.validate(estacao);
+//		validator.onErrorUsePageOf(this).adicionarEstacao();
+//		
+//		estacaoDao.insert(estacao);
+//		result.redirectTo(this).estacoes();
+//	}
+//	
+//	@Path("/estacoes/nova")
+//	@Get
+//	public void adicionarEstacao(){
+//		
+//	}
+	
+//	  @Get("/produtos/novo")
+//	  public void formulario() {...}
+//	
+//	  @Get("/produtos/{id}")
+//	  public Produto edita(Long id) {...}
+//	
+//	  @Put("/produtos/{produto.id}")
+//	  public void altera(Produto produto) {...}
+//	
+//	  @Post("/produtos")
+//	  public void adiciona(final Produto produto) {...}
+//	
+//	  @Delete("/produtos/{id}")
+//	  public void remove(Long id) {...}
+//	
+//	  @Get("/produtos")
+//	  public List<Produto> lista() {...}
+
+}

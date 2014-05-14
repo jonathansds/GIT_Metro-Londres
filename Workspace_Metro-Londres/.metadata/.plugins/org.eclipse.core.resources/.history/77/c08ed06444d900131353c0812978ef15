@@ -1,0 +1,15 @@
+package com.teste.londres.utils;
+
+import org.hibernate.SessionFactory;
+
+import br.com.caelum.vraptor.ioc.ComponentFactory;
+
+public class SessionFactoryUtil implements ComponentFactory<SessionFactory>{
+
+	@Override
+	public SessionFactory getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

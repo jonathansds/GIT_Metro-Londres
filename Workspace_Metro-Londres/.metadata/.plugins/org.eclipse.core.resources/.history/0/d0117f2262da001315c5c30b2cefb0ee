@@ -1,0 +1,41 @@
+package com.teste.londres.algoritmo;
+
+import java.util.List;
+
+public class Station {
+	
+	/** tempoDistancia */
+	private Integer tempoDistancia;
+
+	/** estacoesVizinhas */
+	private List<Station> estacoesVizinhas;
+	
+	
+	/**
+	 * @return the tempoDistancia
+	 */
+	public Integer getTempoDistancia() {
+		return tempoDistancia;
+	}
+
+	/**
+	 * @param tempoDistancia the tempoDistancia to set
+	 */
+	public void setTempoDistancia(Integer tempoDistancia) {
+		this.tempoDistancia = tempoDistancia;
+	}
+
+	/**
+	 * @return the estacoesVizinhas
+	 */
+	public List<Station> getEstacoesVizinhas() {
+		return estacoesVizinhas;
+	}
+
+	/**
+	 * @param estacoesVizinhas the estacoesVizinhas to set
+	 */
+	public void setEstacoesVizinhas(List<Station> estacoesVizinhas) {
+		this.estacoesVizinhas = estacoesVizinhas;
+	}
+}

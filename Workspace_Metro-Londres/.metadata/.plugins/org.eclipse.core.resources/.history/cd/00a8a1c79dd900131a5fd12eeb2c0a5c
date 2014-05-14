@@ -1,0 +1,44 @@
+package com.teste.londres.models;
+
+/**
+ * @author Jonathan
+ * @version 12/05/2014
+ *
+ */
+public class Formulario {
+	
+	/** nomeArquivo */
+	private String nomeArquivo;
+	
+	/** arquivo */
+	private byte[] arquivo;
+
+	
+	/**
+	 * @return the nomeArquivo
+	 */
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	/**
+	 * @return the arquivo
+	 */
+	public byte[] getArquivo() {
+		return arquivo;
+	}
+
+	/**
+	 * @param nomeArquivo the nomeArquivo to set
+	 */
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
+	}
+
+	/**
+	 * @param arquivo the arquivo to set
+	 */
+	public void setArquivo(byte[] arquivo) {
+		this.arquivo = arquivo;
+	}
+}

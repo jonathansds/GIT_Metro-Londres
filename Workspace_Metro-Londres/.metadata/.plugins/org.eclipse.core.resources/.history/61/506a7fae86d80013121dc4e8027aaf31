@@ -1,0 +1,5 @@
+package com.teste.londres.dao.impl;
+
+public class EstacaoDaoImpl {
+
+}

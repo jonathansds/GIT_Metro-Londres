@@ -1,0 +1,267 @@
+package com.teste.londres.controllers;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Serializable;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.core.MediaType;
+
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+
+import com.teste.londres.dao.EstacaoDao;
+import com.teste.londres.dao.LinhaDao;
+import com.teste.londres.dao.RotaDao;
+import com.teste.londres.dao.impl.EstacaoDaoImpl;
+import com.teste.londres.dao.impl.LinhaDaoImpl;
+import com.teste.londres.dao.impl.RotaDaoImpl;
+import com.teste.londres.entidades.Estacao;
+import com.teste.londres.entidades.Linha;
+import com.teste.londres.entidades.Rota;
+import com.teste.londres.utils.Constantes;
+
+/**
+ * @author Jonathan
+ * @version 11/05/2014
+ *
+ */
+@Resource
+public class DadosController{
+	
+	/** estacaoDao */
+	private final EstacaoDao estacaoDao;
+	
+	/** rotaDao */
+	private final RotaDao rotaDao;
+	
+	/** linhaDao */
+	private final LinhaDao linhaDao;
+	
+	/** result */
+	private final Result result;
+	
+	/** validator */
+	private final Validator validator;
+	
+	/** estacoes */
+	private List<Object> entidadesList;
+	
+	public DadosController(EstacaoDaoImpl estacaoDao, RotaDaoImpl rotaDao, LinhaDaoImpl linhaDao, Result result, Validator validator){
+		this.estacaoDao = estacaoDao;
+		this.rotaDao = rotaDao;
+		this.linhaDao = linhaDao;
+		this.result = result;
+		this.validator = validator;
+	}
+	
+	@Get
+	@Path("/dados/arquivo")
+	public void arquivo(){
+		System.out.println("CHAMOU!");
+	}
+	
+	@Post
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Path("/importar")
+	public void importar(UploadedFile arquivo, final String tabela){
+//		validator.checking(new Validations() {{
+//		    that(tabela != null && 
+//	    		(tabela.trim().equalsIgnoreCase(Constantes.TABELA_ESTACOES) || 
+//				 tabela.trim().equalsIgnoreCase(Constantes.TABELA_LINHAS)  || 
+//				 tabela.trim().equalsIgnoreCase(Constantes.TABELA_ROTAS)),
+//		        "nomeTabela","nome.tabela.invalido");
+//		    
+//		    that(arq != null && (arq.getFileName().endsWith(".csv") || arq.getFileName().endsWith(".CSV")), "arq", "arquivo.extensao.invalida");
+//		  }});
+		
+		validator.onErrorUsePageOf(this).arquivo();
+		
+		try{
+			boolean sucesso = recuperaObjetosPersistentes(arquivo, tabela);
+			
+			if(sucesso){
+				persisteListaEntidades();
+			}
+		}catch(Exception erro){
+			erro.printStackTrace();
+			result.redirectTo(this).arquivo();
+		}
+	}
+	
+	private boolean recuperaObjetosPersistentes(UploadedFile arq, String tabela) throws IOException{
+		String linha;
+		String[] dados;
+		String[] colunas;
+		BufferedReader reader;
+		try{
+			reader = new BufferedReader(new InputStreamReader(arq.getFile()));
+			
+			linha = reader.readLine();
+			
+			if(linha != null && !linha.trim().equals("")){
+				colunas = linha.split(";");
+			}else{
+				return false;
+			}
+		}catch(Exception erro){
+			erro.printStackTrace();
+			return false;
+		}
+		
+		
+		boolean populou = false;
+		entidadesList = new ArrayList<Object>();
+		Class params[] = new Class[colunas.length];
+		String nomeSets[] = new String[colunas.length];
+		Object entidade;
+		String nomeMetodoSetEntidade = "";
+		String nomeMetodoGetEntidade = "";
+		
+		if(tabela.equalsIgnoreCase(Constantes.TABELA_ESTACOES)){
+			entidade = new Estacao();
+		}else if(tabela.equalsIgnoreCase(Constantes.TABELA_LINHAS)){
+			entidade = new Linha();
+		}else{
+			entidade = new Rota();
+		}
+			
+		for(int i = 0; i < colunas.length; i++){
+			try{
+				Method[] metodosGeral = entidade.getClass().getDeclaredMethods();
+				String atributo = colunas[i];
+				nomeMetodoSetEntidade = "set" + atributo.substring(0,1).toUpperCase().concat(atributo.substring(1));
+				nomeSets[i] = nomeMetodoSetEntidade;
+				nomeMetodoGetEntidade = nomeMetodoSetEntidade.replaceFirst("set", "get");
+				
+				for(Method metodo : metodosGeral){
+					if(metodo.getName().equals(nomeMetodoGetEntidade)){
+						params[i] = metodo.getReturnType();
+						break;
+					}
+				}
+			}catch(Exception erro){
+				erro.printStackTrace();
+				continue;
+			}
+		}
+			
+		while((linha = reader.readLine())!= null){
+			dados = linha.split(";");
+			
+			for(int i = 0; i < colunas.length; i++){
+				try{
+					Object valor = getInstancia(params[i], dados[i]);
+					
+					if(valor == null){
+						continue;
+					}
+				
+				
+					Method metodoSet = entidade.getClass().getDeclaredMethod(nomeSets[i], params[i]);
+					metodoSet.setAccessible(true);
+					metodoSet.invoke(entidade, new Object[]{valor});
+					populou = true;
+				}catch(NumberFormatException err){
+					err.printStackTrace();
+					continue;
+				}catch(Exception erro){
+					erro.printStackTrace();
+					continue;
+				}
+			}
+			
+			entidadesList.add(entidade);
+		}
+		
+		return populou;
+	}
+	
+	private Method[] tornarMetodosAcessiveis(Method[] metodos){
+		Method amethod[];
+        int j = (amethod = metodos).length;
+        for(int i = 0; i < j; i++)
+        {
+            Method metodo = amethod[i];
+            metodo.setAccessible(true);
+        }
+
+        return metodos;
+
+	}
+	
+	private Object getInstancia(Class classe, String valor){
+		if(classe == null){
+			return null;
+		}
+		
+		String nome = classe.getName();
+		
+		if(nome.endsWith("Double")){
+			return new Double(valor);
+		}else if(nome.endsWith("String")){
+			return new String(valor);
+		}else if(nome.endsWith("Integer")){
+			return new Integer(valor);
+		}
+		
+		return null;
+	}
+	
+	private boolean persisteListaEntidades(){
+		if(entidadesList.get(0) instanceof Estacao){
+			
+		}else if(entidadesList.get(0) instanceof Rota){
+			
+		}else if(entidadesList.get(0) instanceof Linha){
+			
+		}
+		
+		return false;
+	}
+	
+	
+//	@Path("/estacoes")
+//	@Get
+//	public List<Estacao> estacoes(){
+//		return estacaoDao.listAll();
+//	}
+//	
+//	@Path("/estacoes/adiciona")
+//	@Post
+//	public void adiciona(final Estacao estacao){
+//		validator.validate(estacao);
+//		validator.onErrorUsePageOf(this).adicionarEstacao();
+//		
+//		estacaoDao.insert(estacao);
+//		//result.redirectTo(this).estacoes();
+//	}
+	
+//	  @Get("/produtos/novo")
+//	  public void formulario() {...}
+//	
+//	  @Get("/produtos/{id}")
+//	  public Produto edita(Long id) {...}
+//	
+//	  @Put("/produtos/{produto.id}")
+//	  public void altera(Produto produto) {...}
+//	
+//	  @Post("/produtos")
+//	  public void adiciona(final Produto produto) {...}
+//	
+//	  @Delete("/produtos/{id}")
+//	  public void remove(Long id) {...}
+//	
+//	  @Get("/produtos")
+//	  public List<Produto> lista() {...}
+
+}

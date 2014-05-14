@@ -1,0 +1,54 @@
+package com.teste.londres.models;
+
+import java.io.Serializable;
+
+import br.com.caelum.vraptor.ioc.Component;
+
+/**
+ * @author Jonathan
+ * @version 12/05/2014
+ *
+ */
+@Component
+public class Formulario implements Serializable {
+	
+	/** nomeArquivo */
+	private String nomeArquivo;
+	
+	/** arquivo */
+	private byte[] arquivo;
+
+	
+	/**
+	 * @return the nomeArquivo
+	 */
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	/**
+	 * @return the arquivo
+	 */
+	public byte[] getArquivo() {
+		return arquivo;
+	}
+
+	/**
+	 * @param nomeArquivo the nomeArquivo to set
+	 */
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
+	}
+
+	/**
+	 * @param arquivo the arquivo to set
+	 */
+	public void setArquivo(byte[] arquivo) {
+		this.arquivo = arquivo;
+	}
+	
+	@Override
+	public String toString() {
+		return this.nomeArquivo;
+	}
+}

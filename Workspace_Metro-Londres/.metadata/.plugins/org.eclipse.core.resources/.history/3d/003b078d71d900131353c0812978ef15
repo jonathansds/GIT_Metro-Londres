@@ -1,0 +1,203 @@
+package com.teste.londres.entidades;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
+/**
+ * @author Jonathan
+ * @version 10/05/2014
+ *
+ */	
+@Entity(name="estacao")
+public class Estacao implements Serializable{
+	
+	/** serialVersionUID */
+	private static final long serialVersionUID = -3022177635156783488L;
+
+	/** id */
+	private Long id;
+	
+	/** latitude */
+	@NotNull(message="O campo Latitude é obrigatório")
+	@Min(0)
+	private Double latitude;
+	
+	/** longitude */
+	@NotNull
+	@Min(0)
+	private Double longitude;
+	
+	/** nome */
+	@NotNull
+	@Length(min=3)
+	private String nome;
+	
+	/** descricao */
+	@NotNull
+	@Length(min=3)
+	private String descricao;
+	
+	/** zona */
+	@NotNull
+	@Min(0)
+	private Integer zona;
+	
+	/** totalLinhas */
+	@NotNull
+	@Min(0)
+	private Integer totalLinhas;
+	
+	/** trilho */
+	@NotNull
+	@Min(0)
+	private Integer trilhos;
+
+	
+	
+	/**
+	 * @return the id
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id")
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @return the latitude
+	 */
+	@Column(name="latitude", columnDefinition="DECIMAL(6,4)")
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	/**
+	 * @return the longitude
+	 */
+	@Column(name="longitude", columnDefinition="DECIMAL(6,4)")
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	/**
+	 * @return the nome
+	 */
+	@Column(name="nome")
+	public String getNome() {
+		return nome;
+	}
+
+	/**
+	 * @return the descricao
+	 */
+	@Column(name="descricao")
+	public String getDescricao() {
+		return descricao;
+	}
+
+	/**
+	 * @return the zona
+	 */
+	@Column(name="zona")
+	public Integer getZona() {
+		return zona;
+	}
+
+	/**
+	 * @return the totalLinhas
+	 */
+	@Column(name="total_linhas")
+	public Integer getTotalLinhas() {
+		return totalLinhas;
+	}
+
+	/**
+	 * @return the trilho
+	 */
+	@Column(name="trilhos")
+	public Integer getTrilhos() {
+		return trilhos;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param latitude the latitude to set
+	 */
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * @param longitude the longitude to set
+	 */
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	/**
+	 * @param descricao the descricao to set
+	 */
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	/**
+	 * @param zona the zona to set
+	 */
+	public void setZona(Integer zona) {
+		this.zona = zona;
+	}
+
+	/**
+	 * @param totalLinhas the totalLinhas to set
+	 */
+	public void setTotalLinhas(Integer totalLinhas) {
+		this.totalLinhas = totalLinhas;
+	}
+
+	/**
+	 * @param trilho the trilho to set
+	 */
+	public void setTrilhos(Integer trilhos) {
+		this.trilhos = trilhos;
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj != null && obj instanceof Estacao){
+			if(((Estacao)obj).getId().equals(this.id)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return this.nome;
+	}
+}
